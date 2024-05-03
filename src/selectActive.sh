@@ -27,7 +27,7 @@ printf "%s\n" "----------------------------------------"
 
 echo "Select branch:"
 IFS=","; BRANCH_CSV="${ACTIVE_BRANCHES[*]}"; unset IFS
-SELECTED_BRANCH=$("$script_dir"/selectFromList.sh "$BRANCH_CSV" | sed 's/origin\///')
+if SELECTED_BRANCH=$("$script_dir"/selectFromList.sh "$BRANCH_CSV" | sed 's/origin\///'); then
 
 read -p "Checkout $SELECTED_BRANCH? (Y/n): " -n 1 -r
 
@@ -39,4 +39,6 @@ else
     exit 1
 fi
 
+    exit 1
+fi
 
